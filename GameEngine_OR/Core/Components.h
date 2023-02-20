@@ -57,3 +57,19 @@ public:
 
 	
 }; ECS_DEFINE_TYPE(Animator)
+
+struct InputController
+{
+public:
+	ECS_DECLARE_TYPE;
+
+	bool bInputActive;
+	bool w, a, s, d, left, right, up, down, space;
+
+	InputController()
+	{
+		std::memset(this, false, sizeof(InputController));
+		this->bInputActive = true;
+	}
+	
+}; ECS_DEFINE_TYPE(InputController)

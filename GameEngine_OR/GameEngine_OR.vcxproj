@@ -144,8 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Systems\AnimationSystem.cpp" />
+    <ClCompile Include="Systems\InputSystem.cpp" />
     <ClCompile Include="Systems\RenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +153,7 @@
     <ClInclude Include="Core\ECS.h" />
     <ClInclude Include="Core\Engine.h" />
     <ClInclude Include="Systems\AnimationSystem.h" />
+    <ClInclude Include="Systems\InputSystem.h" />
     <ClInclude Include="Systems\RenderingSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
