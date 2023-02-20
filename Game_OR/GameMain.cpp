@@ -14,7 +14,7 @@ int main(int argc, char* args[])
 	//Add systems to the engine
 	GameEngine.AddSystem(new RenderingSystem());
 	GameEngine.AddSystem(new AnimationSystem());
-	
+
 	//create 250 entities to the world
 	for (int i = 0; i < 25; i++)
 	{
