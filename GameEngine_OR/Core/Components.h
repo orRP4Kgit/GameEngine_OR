@@ -8,13 +8,35 @@ struct Transform
 public:
 	ECS_DECLARE_TYPE; 
 	float xPos, yPos;
-	float rotation{ 0.0f };
+	float rotationAngle;
+	float rotationSpeed;
+	float xSpeed, ySpeed;
+	float xSpeedMod, ySpeedMod;
+	bool bCollide;
 
-	Transform(float xPos, float yPos)
+	Transform(float xPos, float yPos, bool bCollide, float xSpeed = 0.0f, float ySpeed = 0.0f, float rotationAngle = 0.0f, float rotationSpeed = 0.0f)
 	{
 		this->xPos = xPos;
 		this->yPos = yPos;
+		this->xSpeed = xPos;
+		this->ySpeed = yPos;
+		this->xSpeedMod = xSpeed;
+		this->ySpeedMod = ySpeed;
+		this->rotationAngle = rotationAngle;
+		this->rotationSpeed = rotationSpeed;
+		this->bCollide = bCollide;
 
+		
+
+	}
+
+	void Move()
+	{
+		if (bCollide == false)
+		{
+			this->xPos += xSpeed;
+			this->yPos += ySpeed;
+		}
 	}
 }; 
 ECS_DEFINE_TYPE(Transform)
@@ -25,7 +47,7 @@ public:
 	ECS_DECLARE_TYPE;
 	sf::Sprite self;
 	std::string texturePath;
-	int width, height;
+	float width, height;
 
 	Sprite2D(std::string texturePath)
 	{
