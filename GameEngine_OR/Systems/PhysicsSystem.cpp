@@ -146,26 +146,38 @@ void PhysicsSystem::PushEntity(ECS::Entity* touchingEntity, ECS::Entity* touched
     float newTouchedXSpeed = touchedEntity->get<Transform>()->xSpeed;
     float newTouchedYSpeed = touchedEntity->get<Transform>()->ySpeed;
 
-    if (newTouchingXSpeed > 0 &&
-        newTouchingX < newTouchedX)
+    if (std::find(
+        touchedEntity->get<Tag>()->tagNames.begin(),
+        touchedEntity->get<Tag>()->tagNames.end(),
+        "Object") != touchedEntity->get<Tag>()->tagNames.end())
     {
-        touchedEntity->get<Transform>()->xPos++;
-    }
-    else if (newTouchingXSpeed < 0 &&
-        newTouchingX > newTouchedX)
-    {
-        touchedEntity->get<Transform>()->xPos--;
-    }
+        if (std::find(
+            touchedEntity->get<Tag>()->tagNames.begin(),
+            touchedEntity->get<Tag>()->tagNames.end(),
+            "Player") != touchedEntity->get<Tag>()->tagNames.end())
+        {
+            if (newTouchingXSpeed > 0 &&
+                newTouchingX < newTouchedX)
+            {
+                touchedEntity->get<Transform>()->xPos++;
+            }
+            else if (newTouchingXSpeed < 0 &&
+                newTouchingX > newTouchedX)
+            {
+                touchedEntity->get<Transform>()->xPos--;
+            }
 
-    if (newTouchingYSpeed > 0 &&
-        newTouchingY < newTouchedY)
-    {
-        touchedEntity->get<Transform>()->yPos++;
-    }
-    else if (newTouchingYSpeed < 0 &&
-        newTouchingY > newTouchedY)
-    {
-        touchedEntity->get<Transform>()->yPos--;
+            if (newTouchingYSpeed > 0 &&
+                newTouchingY < newTouchedY)
+            {
+                touchedEntity->get<Transform>()->yPos++;
+            }
+            else if (newTouchingYSpeed < 0 &&
+                newTouchingY > newTouchedY)
+            {
+                touchedEntity->get<Transform>()->yPos--;
+            }
+        }
     }
 }
 

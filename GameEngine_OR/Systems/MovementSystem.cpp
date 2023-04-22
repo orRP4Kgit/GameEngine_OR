@@ -1,30 +1,39 @@
 #define _USE_MATH_DEFINES
 #include "MovementSystem.h"
 #include <cmath>
-void MovementSystem::tick(ECS::World* world, float DeltaTime)
+
+void MovementSystem::tick(ECS::World* world, float deltaTime)
 {
-	world->each<InputController, Transform, Sprite2D, Animator>(
-		[&](ECS::Entity* entity,
+	this->timer += deltaTime;
+
+	world->each<InputController, Transform, Sprite2D, Tag>(
+		[&](ECS::Entity*,
 			ECS::ComponentHandle<InputController> input,
 			ECS::ComponentHandle<Transform> transform,
 			ECS::ComponentHandle<Sprite2D> sprite,
-			ECS::ComponentHandle<Animator> animat)-> void
+			ECS::ComponentHandle<Tag> tag
+			) -> void
 		{
-			//centre anchor point to sprite
-			//sprite->self.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
-			//ECS::ComponentHandle<InputController> input = entity->get<InputController>();
+			// Center anchor point to sprite
+			sprite->self.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
+
+				//const ECS::ComponentHandle<InputController> input = entity->get<InputController>();
+		if (tag->ContainsTag("Player") == true)
+		{
 			if (input->bInputActive == true)
 			{
 				if (input->w == true)
 				{
-					transform->xSpeed = sin((sprite->self.getRotation() + 90.0f) / 180.0f* M_PI) * transform-> ySpeedMod;
-					transform->ySpeed = -cos((sprite->self.getRotation() + 90.0f) / 180.0f * M_PI) * transform-> ySpeedMod;
+					transform->xSpeed = sin((sprite->self.getRotation() + 90.0) / 180.0 * M_PI) * transform->ySpeedMod;
+					transform->ySpeed = -cos((sprite->self.getRotation() + 90.0) / 180.0 * M_PI) * transform->ySpeedMod;
+
 					transform->Move();
 				}
 				else if (input->s == true)
 				{
-					transform->xSpeed = -sin((sprite->self.getRotation() + 90.0f) / 180.0f * M_PI) * transform->ySpeedMod;
-					transform->ySpeed = cos((sprite->self.getRotation() + 90.0f) / 180.0f * M_PI) * transform->ySpeedMod;
+					transform->xSpeed = -sin((sprite->self.getRotation() + 90.0) / 180.0 * M_PI) * transform->ySpeedMod;
+					transform->ySpeed = cos((sprite->self.getRotation() + 90.0) / 180.0 * M_PI) * transform->ySpeedMod;
+
 					transform->Move();
 				}
 				else
@@ -41,7 +50,11 @@ void MovementSystem::tick(ECS::World* world, float DeltaTime)
 				{
 					sprite->self.rotate(transform->rotationSpeed);
 				}
-				
 			}
-		});
-}
+		}
+		else if (tag->ContainsTag("Projectile") == true)
+		{
+
+		}
+			});
+	}

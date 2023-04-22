@@ -1,5 +1,7 @@
 #include "SFML/graphics.hpp"
 #include "Core/Engine.h"
+#include "Entities/Player.h"
+#include "Entities/Dummy.h"
 
 int main(int argc, char* args[])
 {
@@ -11,8 +13,8 @@ int main(int argc, char* args[])
 	GameEngine.world = ECS::World::createWorld();
 	//create our first entity 
 	ECS::Entity* background;
-	ECS::Entity* myEnt;
-	ECS::Entity* tux;
+	//ECS::Entity* myEnt;
+	//ECS::Entity* tux;
 	//Add systems to the engine
 	GameEngine.AddSystem(new RenderingSystem());
 	GameEngine.AddSystem(new AnimationSystem());
@@ -25,7 +27,7 @@ int main(int argc, char* args[])
 	background->assign <Sprite2D>("../Debug/Pictures/bg.jpg");
 	std::cout << "id: " << background->getEntityId() << std::endl;
 
-	myEnt = GameEngine.world->create();
+	/*myEnt = GameEngine.world->create();
 	myEnt->assign <Transform>(200, 300, true, 0.3f, 0.3f, 0.0f, 0.2f);
 	myEnt->assign <Sprite2D>("../Debug/Pictures/herosheet.png");
 	myEnt->assign <Animator>(32, 32, 200.0f, 4, 1);
@@ -39,7 +41,13 @@ int main(int argc, char* args[])
 	tux->assign <InputController>();
 	tux->assign <BoxCollider>();
 	tux->get<Animator>()->currentRow = 8;
-	std::cout << "id: " << tux->getEntityId() << std::endl;
+	std::cout << "id: " << tux->getEntityId() << std::endl;*/
+
+	//create instances of entities
+	Entity* player = new Player(sf::Vector2f(300.0f, 300.0f));
+	Entity* dummy = new Dummy("../debug/pictures/BlueBox.png", sf::Vector2f(400.0f, 400.0f));
+
+
 
 
 	// pass window refrence to Engine and start
