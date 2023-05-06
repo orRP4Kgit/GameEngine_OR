@@ -57,6 +57,9 @@
     <ClCompile Include="Interface\Gui_Components\ButtonMap.cpp">
       <Filter>Interface\Gui_Components</Filter>
     </ClCompile>
+    <ClCompile Include="Interface\MainCamera.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Interface\Gui_Components\ButtonMap.h">
       <Filter>Interface\Gui_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\MainCamera.h">
+      <Filter>Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
