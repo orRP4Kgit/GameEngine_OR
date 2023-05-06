@@ -3,11 +3,13 @@
 
 void RenderingSystem::tick(ECS::World* world, float deltaTime)
 {
-	// clear before drawing all textures
-	Engine::GetInstance().window->clear();
+	
 
 	if (States::GetPausedState() == false)
 	{
+		// clear before drawing all textures
+		Engine::GetInstance().window->clear();
+
 		world->each<Transform, Sprite2D>(
 			[&](ECS::Entity* entity,
 				ECS::ComponentHandle<Transform> transform,

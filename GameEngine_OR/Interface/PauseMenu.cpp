@@ -11,7 +11,7 @@ PauseMenu::PauseMenu(sf::RenderWindow* window)
 
 void PauseMenu::Update(sf::Event event, float DeltaTime, sf::RenderWindow* window) const
 {
-	if (event.type == sf::Event::KeyPressed);
+	if (event.type == sf::Event::KeyPressed)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || 
 			sf::Keyboard::isKeyPressed(sf::Keyboard::P))
@@ -36,7 +36,7 @@ void PauseMenu::Update(sf::Event event, float DeltaTime, sf::RenderWindow* windo
 		if (ButtonMap::GetMap()["QUIT"]->bClicked == true)
 		{
 			Quit(window);
-			ButtonMap::GetMap()["REUME"]->bClicked = false;
+			ButtonMap::GetMap()["RESUME"]->bClicked = false;
 		}
 	}
 }
