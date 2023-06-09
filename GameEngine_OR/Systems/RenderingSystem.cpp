@@ -3,7 +3,7 @@
 
 void RenderingSystem::tick(ECS::World* world, float deltaTime)
 {
-	
+
 
 	if (States::GetPausedState() == false)
 	{
@@ -31,8 +31,42 @@ void RenderingSystem::tick(ECS::World* world, float deltaTime)
 		// Update and draw to screen
 		sprite->self.setPosition(transform->xPos, transform->yPos);
 		Engine::GetInstance().window->draw(sprite->self);
+		/*if (std::to_string(entity->getEntityId()) == "4")
+		{
+			std::cout << entity->get<Transform>()->xPos<< std::endl;
+			}
+		*/});
+
+		world->each<TileMap>(
+			[&](ECS::Entity*, ECS::ComponentHandle<TileMap> tileMap)->void
+			{
+				//Loop through each tile and render onto the Engine's window instance
+				for (auto& x : tileMap->map)
+				{
+					for (auto& y : x)
+					{
+						for (const auto& z : y)
+						{
+							if (z == nullptr)
+							{
+								continue;
+							}
+
+							sf::RenderWindow* winRef = Engine::GetInstance().window;
+							winRef->draw(z->shape);
+							if (z->GetCollision() == true)
+							{
+								tileMap->collisionBox.setPosition(z->GetPosition());
+								winRef->draw(tileMap->collisionBox);
+							}
+						}
+					}
+				}
 
 			});
+
+
+
 		// Display updates
 		Engine::GetInstance().window->display();
 	}
@@ -47,9 +81,9 @@ sf::Texture* RenderingSystem::LoadTexture(std::string texturePath)
 		system("pause");
 		exit(EXIT_FAILURE);
 	}
-	else 
+	else
 	{
 		return tex;
 	}
-	
+
 }

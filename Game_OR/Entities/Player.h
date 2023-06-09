@@ -3,7 +3,7 @@
 class Player : public Soldier
 {
 public:
-	Player(sf::Vector2f location);
+	Player(sf::Vector2f location, float speed);
 	~Player() = default;
 
 

@@ -33,6 +33,12 @@
     <ClCompile Include="Entities\Dummy.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Projectile.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Enemy.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\Entity.h">
@@ -45,6 +51,12 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Dummy.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Projectile.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Enemy.h">
       <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>

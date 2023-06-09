@@ -2,6 +2,7 @@
 #include "Core/Engine.h"
 #include "Entities/Player.h"
 #include "Entities/Dummy.h"
+#include "Entities/Enemy.h"
 
 int main(int argc, char* args[])
 {
@@ -21,6 +22,7 @@ int main(int argc, char* args[])
 	GameEngine.AddSystem(new MovementSystem());
 	GameEngine.AddSystem(new InputSystem());
 	GameEngine.AddSystem(new PhysicsSystem());
+	GameEngine.AddSystem(new TileMapSystem());
 	
 	background = GameEngine.world->create();
 	background->assign <Transform>(0, 0, false);
@@ -44,8 +46,9 @@ int main(int argc, char* args[])
 	std::cout << "id: " << tux->getEntityId() << std::endl;*/
 
 	//create instances of entities
-	Entity* player = new Player(sf::Vector2f(300.0f, 300.0f));
+	Entity* enemy_1 = new Enemy(sf::Vector2f(200.0f, 200.0f), 0.05f);
 	Entity* dummy = new Dummy("../debug/pictures/BlueBox.png", sf::Vector2f(400.0f, 400.0f));
+	Entity* player = new Player(sf::Vector2f(300.0f, 300.0f), 0.05f);
 
 
 

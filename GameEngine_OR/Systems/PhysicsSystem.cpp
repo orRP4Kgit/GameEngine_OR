@@ -144,8 +144,7 @@ void PhysicsSystem::PushEntity(ECS::Entity* touchingEntity, ECS::Entity* touched
     float newTouchingYSpeed = touchingEntity->get<Transform>()->ySpeed;
     float newTouchedX = touchedEntity->get<Transform>()->xPos;
     float newTouchedY = touchedEntity->get<Transform>()->yPos;
-    float newTouchedXSpeed = touchedEntity->get<Transform>()->xSpeed;
-    float newTouchedYSpeed = touchedEntity->get<Transform>()->ySpeed;
+    
 
     if (std::find(
         touchedEntity->get<Tag>()->tagNames.begin(),
@@ -153,9 +152,9 @@ void PhysicsSystem::PushEntity(ECS::Entity* touchingEntity, ECS::Entity* touched
         "Object") != touchedEntity->get<Tag>()->tagNames.end())
     {
         if (std::find(
-            touchedEntity->get<Tag>()->tagNames.begin(),
-            touchedEntity->get<Tag>()->tagNames.end(),
-            "Player") != touchedEntity->get<Tag>()->tagNames.end())
+            touchingEntity->get<Tag>()->tagNames.begin(),
+            touchingEntity->get<Tag>()->tagNames.end(),
+            "Player") != touchingEntity->get<Tag>()->tagNames.end())
         {
             if (newTouchingXSpeed > 0 &&
                 newTouchingX < newTouchedX)

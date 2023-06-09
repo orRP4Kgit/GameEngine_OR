@@ -5,7 +5,7 @@ class Soldier : public Entity
 private:
 	int fireDelay = 0;
 public:
-	Soldier(std::string picturePath, sf::Vector2f location);
+	Soldier(std::string picturePath, sf::Vector2f location, float speed);
 	~Soldier() = default;
 
 	
